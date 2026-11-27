@@ -1,0 +1,60 @@
+
+public class Optimal {
+    public static void main(String[] args) {
+
+        int pages[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3,
+                       0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+
+        int frames[] = new int[3];
+        int faults = 0, hits = 0;
+
+        for (int i = 0; i < 3; i++)
+            frames[i] = -1;
+
+        for (int i = 0; i < pages.length; i++) {
+
+            int found = 0;
+
+            for (int j = 0; j < 3; j++) {
+                if (frames[j] == pages[i]) {
+                    found = 1;
+                    hits++;
+                    break;
+                }
+            }
+
+            if (found == 0) {
+
+                int pos = -1, farthest = -1;
+
+                for (int j = 0; j < 3; j++) {
+
+                    if (frames[j] == -1) {
+                        pos = j;
+                        break;
+                    }
+
+                    int next = 999;
+
+                    for (int k = i + 1; k < pages.length; k++) {
+                        if (pages[k] == frames[j]) {
+                            next = k;
+                            break;
+                        }
+                    }
+
+                    if (next > farthest) {
+                        farthest = next;
+                        pos = j;
+                    }
+                }
+
+                frames[pos] = pages[i];
+                faults++;
+            }
+        }
+
+        System.out.println("Optimal Page Faults: " + faults);
+        System.out.println("Optimal Page Hits: " + hits);
+    }
+}

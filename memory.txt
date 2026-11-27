@@ -1,0 +1,44 @@
+
+public class MemoryAllocation {
+    public static void main(String[] args) {
+
+        int block[] = {100, 500, 200, 300, 600};
+        int process = 212;
+
+        int first = -1;
+        int best = -1;
+        int worst = -1;
+
+        // FIRST FIT
+        for (int i = 0; i < 5; i++) {
+            if (block[i] >= process) {
+                first = i;
+                break;
+            }
+        }
+
+        // BEST FIT
+        for (int i = 0; i < 5; i++) {
+            if (block[i] >= process) {
+                if (best == -1 || block[i] < block[best]) {
+                    best = i;
+                }
+            }
+        }
+
+        // WORST FIT
+        for (int i = 0; i < 5; i++) {
+            if (block[i] >= process) {
+                if (worst == -1 || block[i] > block[worst]) {
+                    worst = i;
+                }
+            }
+        }
+
+        System.out.println("Process Size: " + process);
+
+        System.out.println("First Fit: Block " + (first + 1));
+        System.out.println("Best Fit: Block " + (best + 1));
+        System.out.println("Worst Fit: Block " + (worst + 1));
+    }
+}

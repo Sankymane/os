@@ -1,0 +1,45 @@
+#!/bin/bash
+
+echo "----- DIRECTORY OPERATIONS -----"
+
+# 1. Display name/path of current directory
+echo "Current Directory:"
+pwd
+
+# 2. Display list of directory contents
+echo
+echo "Contents of Current Directory:"
+ls -l
+
+# 3. Create another directory
+echo
+echo "Creating a new directory..."
+mkdir -p MyDirectory
+
+# 4. Create a file and write contents into it
+echo "Creating a file inside MyDirectory..."
+echo "This is a sample file created using a shell script." > MyDirectory/sample.txt
+echo "This file contains information about directory operations." >> MyDirectory/sample.txt
+
+# 5. Display contents of the file
+echo
+echo "Contents of sample.txt:"
+cat MyDirectory/sample.txt
+
+# 6. Copy the directory to home directory
+echo
+echo "Copying MyDirectory to home directory..."
+cp -r MyDirectory "$HOME/"
+
+# 7. Display the copied directory
+echo
+echo "Directory copied successfully to:"
+echo "$HOME/MyDirectory"
+
+echo
+echo "Contents of copied directory:"
+ls -l "$HOME/MyDirectory"
+
+echo
+echo "----- DIRECTORY OPERATIONS COMPLETED -----"
+

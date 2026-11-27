@@ -1,0 +1,51 @@
+
+public class RoundRobin {
+    public static void main(String[] args) {
+
+        int bt[] = {5, 3, 2};
+        int rem[] = {5, 3, 2};
+        int wt[] = new int[3];
+        int tat[] = new int[3];
+
+        int tq = 2;
+        int time = 0;
+
+        while (true) {
+
+            int done = 0;
+
+            for (int i = 0; i < 3; i++) {
+
+                if (rem[i] > 0) {
+
+                    if (rem[i] > tq) {
+                        time = time + tq;
+                        rem[i] = rem[i] - tq;
+                    }
+                    else {
+                        time = time + rem[i];
+                        rem[i] = 0;
+                        tat[i] = time;
+                    }
+                }
+
+                if (rem[i] == 0) {
+                    done++;
+                }
+            }
+
+            if (done == 3) {
+                break;
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+
+            wt[i] = tat[i] - bt[i];
+
+            System.out.println("P" + (i + 1) +
+                " WT = " + wt[i] +
+                " TAT = " + tat[i]);
+        }
+    }
+}

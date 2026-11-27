@@ -1,0 +1,22 @@
+
+public class FCFS {
+    public static void main(String[] args) {
+
+        int bt[] = {5, 3, 2};
+        int wt[] = new int[3];
+        int tat[] = new int[3];
+
+        wt[0] = 0;
+
+        for (int i = 1; i < 3; i++) {
+            wt[i] = wt[i-1] + bt[i-1];
+        }
+
+        for (int i = 0; i < 3; i++) {
+            tat[i] = wt[i] + bt[i];
+
+            System.out.println("P" + (i+1) +
+                " WT=" + wt[i] + " TAT=" + tat[i]);
+        }
+    }
+}
